@@ -109,7 +109,7 @@
   border-radius: 16px;
   transition: all 0.3s ease-in-out;
   z-index: -1;
-  transform: translateX(50%); 
+  transform: translateX(90%); 
   overflow-y: auto;
   opacity: 0;
 }
@@ -122,10 +122,10 @@
   position: fixed;
   top: 20%;
   overflow-y: auto;
-  height: 65%;
+  height: 60%;
   width: 35%;
   margin: 0 auto;
-  transform: translateX(50%); 
+  transform: translateX(90%); 
   background:#fff;
   display: flex;
   justify-content: center;
