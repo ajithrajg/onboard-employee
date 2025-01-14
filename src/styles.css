@@ -196,6 +196,13 @@ html, body {
       transform: translateX(0%) !important;
       margin: 0 1% !important;
     }
+
+    .modal-date {
+      height: 59% !important;
+    }
+    .modal-end-date {
+      height: 54% !important;
+    }
     .alert {
       bottom: -10%;
       top: unset;
