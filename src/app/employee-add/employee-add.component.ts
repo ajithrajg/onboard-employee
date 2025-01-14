@@ -394,7 +394,7 @@ export class EmployeeAddComponent  {
     setTimeout(() => {
       this.showAlert = false;
       this.router.navigate(['/employees']);
-    }, 5000);
+    }, 2000);
   }
 
   undo() {
