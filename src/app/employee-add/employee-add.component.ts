@@ -26,6 +26,8 @@ export class EmployeeAddComponent  {
   currentEndYear: number = new Date().getFullYear();
   selectedDate: Date = new Date();
   selectedEndDate!: any;
+  confirmSelectedDate: Date = new Date();
+  confirmSelectedEndDate!: any;
   selectedButton: string = 'today';
   selectedEndButton: string = 'no-date';
   todaysdate:string = formatDate(new Date(), 'yyyy-MM-dd', 'en').toString();
@@ -79,24 +81,13 @@ export class EmployeeAddComponent  {
 
   saveDate() {
    this.date = this.selectedDate.toDateString();
+   this.confirmSelectedDate = this.selectedDate;
    this.showDateModal = false; 
   }
 
   saveEndDate() {
     this.showEndDateModal = false; 
-  }
-
-  changeDate(event: Event, date: Date) {
-    // Prevent default browser behavior if needed
-    // event.preventDefault(); 
-    if(!date) {
-      date = new Date();
-      this.selectedButton = 'today';
-    }
-    this.currentMonth = date.getMonth();
-    this.currentYear = date.getFullYear();
-    this.selectedDate = new Date(date);
-    console.log('selected date: '+ this.selectedDate);
+    this.confirmSelectedEndDate = this.selectedEndDate;
   }
 
   jumpToDate(date?: Date) {
@@ -303,8 +294,8 @@ export class EmployeeAddComponent  {
               this.employee = employee;
               this.employeeForm.get('employeeName')?.setValue(this.employee.name);
               this.roleName = this.employee.role;
-              this.selectedDate = this.employee.startDate;
-              this.selectedEndDate = this.employee.endDate != 'no-date' ? this.employee.endDate : null;
+              this.confirmSelectedDate = this.employee.startDate;
+              this.confirmSelectedEndDate = this.employee.endDate != 'no-date' ? this.employee.endDate : null;
             } else {
               // Handle case where employee not found (e.g., display an error message)
               console.log('Employee Not Found');
@@ -325,8 +316,8 @@ export class EmployeeAddComponent  {
       const employee = { 
         name: this.employeeName, 
         role: this.roleName, 
-        startDate: this.selectedDate, 
-        endDate: this.selectedEndDate || 'no-date' 
+        startDate: this.confirmSelectedDate, 
+        endDate: this.confirmSelectedEndDate || 'no-date' 
       };
       
     if(this.empId) {

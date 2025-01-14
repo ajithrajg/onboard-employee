@@ -110,7 +110,7 @@
   transition: all 0.3s ease-in-out;
   z-index: -1;
   transform: translateX(50%); 
-
+  overflow-y: auto;
   opacity: 0;
 }
 
@@ -121,6 +121,7 @@
 .modal-end-date {
   position: fixed;
   top: 20%;
+  overflow-y: auto;
   height: 65%;
   width: 35%;
   margin: 0 auto;

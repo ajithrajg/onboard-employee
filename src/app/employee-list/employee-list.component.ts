@@ -110,6 +110,7 @@ export class EmployeeListComponent {
     this.confirmDelete = false;
     this.undoClicked = true;
     this.showAlert = false;
+    this.showDeleteIcon = null;
   }
 
   addEmp() {
