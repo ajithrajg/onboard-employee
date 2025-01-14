@@ -103,7 +103,7 @@ export class EmployeeListComponent {
           }
         });
       }
-    }, 5000);
+    }, 2000);
   }
 
   undo() {
@@ -112,4 +112,7 @@ export class EmployeeListComponent {
     this.showAlert = false;
   }
 
+  addEmp() {
+    this.router.navigate(['employees/add']);
+  }
 }

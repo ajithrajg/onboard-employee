@@ -35,6 +35,8 @@ export class EmployeeAddComponent  {
   showAlert: boolean = false;
   weeks: Date[][] = [];
   endWeeks: Date[][] = [];
+  confirmDelete:boolean = false;
+  undoClicked: boolean = false;
 
   constructor(private employeeService: EmployeeService, private fb: FormBuilder,private router: Router
     ,private empService: EmployeeService, private route: ActivatedRoute) {
@@ -360,7 +362,31 @@ export class EmployeeAddComponent  {
   
   }
 
-  showAlertMessage(message: string) {
+  deleteEmployee(employeeId: number, event:any) {
+    this.alertMessage = 'Employee deleted successfully';
+    this.showAlert = true;
+
+    // Hide the alert after 3 seconds
+    setTimeout(() => {
+      this.showAlert = false;
+      if(this.confirmDelete || !this.undoClicked) {
+        this.employeeService.deleteEmployee(employeeId)
+        .subscribe(isDeleted => {
+          if (isDeleted) {
+            console.log('Employee data has been deleted!');
+            this.router.navigate(['/employees']);
+            // Update your employee list in the component
+          } else {
+            console.error('Error deleting employee');
+          }
+        });
+      }
+    }, 2000);
+    
+    event.stopPropagation();
+  }
+
+  showAlertMessage(message: string, empId?:any) {
     this.alertMessage = message;
     this.showAlert = true;
 
@@ -369,6 +395,12 @@ export class EmployeeAddComponent  {
       this.showAlert = false;
       this.router.navigate(['/employees']);
     }, 5000);
+  }
+
+  undo() {
+    this.confirmDelete = false;
+    this.undoClicked = true;
+    this.showAlert = false;
   }
 
 

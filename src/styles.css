@@ -120,6 +120,11 @@ html, body {
   }
 
   @media screen and (min-width: 768px) and (max-width:1000px) {
+    
+    .modal-date, .modal-end-date {
+      width: 60% !important;
+      transform: translateX(20%);
+    }
     .alert {
       bottom: -10%;
       top: unset;
@@ -146,6 +151,11 @@ html, body {
   }
 
   @media screen and (max-width: 768px) { 
+    
+    .modal-date, .modal-end-date {
+      width: 100% !important;
+      transform: translateX(0%) !important;
+    }
     .alert {
       bottom: -10%;
       top: unset;
@@ -179,6 +189,11 @@ html, body {
   }
   
   @media screen and (max-width: 480px) { 
+    
+    .modal-date, .modal-end-date {
+      width: 100% !important;
+      transform: translateX(0%) !important;
+    }
     .alert {
       bottom: -10%;
       top: unset;
