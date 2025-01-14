@@ -1,0 +1,248 @@
+<div class="container">
+    <div class="header">
+        <div class="svg-container" (click)="goBack()"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24">
+                <path fill="#ffffff" d="M20 11v2H8l5.5 5.5l-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5L8 11z" />
+            </svg></div>
+        <p *ngIf="!empId">Add Employee Details</p>
+        <p *ngIf="empId">Edit Employee Details</p>
+    </div>
+    <div class="alignCenter">
+        <form [formGroup]="employeeForm"  id="employeeForm" style="max-width:700px;min-width: 500px;margin: 2% 0 0 3%">
+            <div class="input-container">
+                <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 11.6923C11.0375 11.6923 10.2135 11.3496 9.52813 10.6642C8.84271 9.97876 8.5 9.15481 8.5 8.19233C8.5 7.22983 8.84271 6.40588 9.52813 5.72048C10.2135 5.03506 11.0375 4.69235 12 4.69235C12.9625 4.69235 13.7864 5.03506 14.4718 5.72048C15.1572 6.40588 15.5 7.22983 15.5 8.19233C15.5 9.15481 15.1572 9.97876 14.4718 10.6642C13.7864 11.3496 12.9625 11.6923 12 11.6923ZM17.9808 19.3077H6.0192C5.59742 19.3077 5.23877 19.1599 4.94327 18.8644C4.64776 18.5689 4.5 18.2102 4.5 17.7885V17.0846C4.5 16.5949 4.63302 16.1414 4.89905 15.7241C5.16507 15.3068 5.52051 14.9859 5.96537 14.7616C6.95384 14.2769 7.95096 13.9135 8.95672 13.6712C9.96249 13.4289 10.9769 13.3077 12 13.3077C13.023 13.3077 14.0375 13.4289 15.0432 13.6712C16.049 13.9135 17.0461 14.2769 18.0346 14.7616C18.4794 14.9859 18.8349 15.3068 19.1009 15.7241C19.3669 16.1414 19.5 16.5949 19.5 17.0846V17.7885C19.5 18.2102 19.3522 18.5689 19.0567 18.8644C18.7612 19.1599 18.4025 19.3077 17.9808 19.3077ZM5.99997 17.8077H18V17.0846C18 16.882 17.9413 16.6945 17.824 16.5221C17.7067 16.3497 17.5474 16.209 17.3461 16.1C16.4846 15.6756 15.6061 15.3542 14.7107 15.1356C13.8152 14.917 12.9117 14.8077 12 14.8077C11.0883 14.8077 10.1847 14.917 9.28927 15.1356C8.39384 15.3542 7.51536 15.6756 6.65382 16.1C6.45254 16.209 6.29325 16.3497 6.17595 16.5221C6.05863 16.6945 5.99997 16.882 5.99997 17.0846V17.8077ZM12 10.1923C12.55 10.1923 13.0208 9.99649 13.4125 9.60483C13.8041 9.21316 14 8.74233 14 8.19233C14 7.64233 13.8041 7.17149 13.4125 6.77983C13.0208 6.38816 12.55 6.19233 12 6.19233C11.45 6.19233 10.9791 6.38816 10.5875 6.77983C10.1958 7.17149 9.99997 7.64233 9.99997 8.19233C9.99997 8.74233 10.1958 9.21316 10.5875 9.60483C10.9791 9.99649 11.45 10.1923 12 10.1923Z"
+                        fill="#1DA1F2" />
+                </svg>
+                <input class="input-field" type="text" placeholder="Username" name="usrnm" formControlName="employeeName" >
+            </div>
+            <div *ngIf="employeeForm.get('employeeName')?.touched && employeeForm.get('employeeName')?.hasError('required')" style="color: tomato;font-size: 12px;">* Name is required</div>
+            <div class="input-container pointer" (click)="toggleModal()">
+                <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M4.3077 20.5C3.80257 20.5 3.375 20.325 3.025 19.975C2.675 19.625 2.5 19.1974 2.5 18.6923V8.30773C2.5 7.80259 2.675 7.37503 3.025 7.02503C3.375 6.67503 3.80257 6.50003 4.3077 6.50003H8.5V4.80775C8.5 4.30263 8.675 3.87508 9.025 3.52508C9.375 3.17508 9.80257 3.00008 10.3077 3.00008H13.6923C14.1974 3.00008 14.625 3.17508 14.975 3.52508C15.325 3.87508 15.5 4.30263 15.5 4.80775V6.50003H19.6923C20.1974 6.50003 20.625 6.67503 20.975 7.02503C21.325 7.37503 21.5 7.80259 21.5 8.30773V18.6923C21.5 19.1974 21.325 19.625 20.975 19.975C20.625 20.325 20.1974 20.5 19.6923 20.5H4.3077ZM4.3077 19H19.6923C19.7692 19 19.8397 18.968 19.9038 18.9039C19.9679 18.8397 20 18.7692 20 18.6923V8.30773C20 8.23079 19.9679 8.16027 19.9038 8.09615C19.8397 8.03205 19.7692 8 19.6923 8H4.3077C4.23077 8 4.16024 8.03205 4.09613 8.09615C4.03202 8.16027 3.99998 8.23079 3.99998 8.30773V18.6923C3.99998 18.7692 4.03202 18.8397 4.09613 18.9039C4.16024 18.968 4.23077 19 4.3077 19ZM9.99998 6.50003H14V4.80775C14 4.73082 13.9679 4.6603 13.9038 4.5962C13.8397 4.53208 13.7692 4.50003 13.6923 4.50003H10.3077C10.2308 4.50003 10.1602 4.53208 10.0961 4.5962C10.032 4.6603 9.99998 4.73082 9.99998 4.80775V6.50003Z"
+                        fill="#1DA1F2" />
+                </svg>
+                <div class="input-field dull" type="text" name="email">{{ roleName || 'Select Role' }}</div>                
+                <svg class="icon flex-end" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M8.86762 13.0222L4.66135 9.25413C4.14905 8.79519 4.03472 8.27007 4.31838 7.67877C4.60095 7.08649 5.10624 6.79036 5.83425 6.79036L14.1659 6.79036C14.8939 6.79036 15.3992 7.08649 15.6818 7.67877C15.9654 8.27007 15.8511 8.79519 15.3388 9.25413L11.1325 13.0222C10.9708 13.1672 10.7955 13.2759 10.6068 13.3483C10.418 13.4208 10.2158 13.457 10.0001 13.457C9.78437 13.457 9.58215 13.4208 9.39341 13.3483C9.20466 13.2759 9.0294 13.1672 8.86762 13.0222Z"
+                        fill="#1DA1F2" />
+                </svg>
+            </div>
+            <div style="display: flex;">
+                <div class="input-container  pointer" (click)="toggleDateModal()">
+                    <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M14.6923 18C14.05 18 13.5048 17.776 13.0567 17.3279C12.6087 16.8798 12.3846 16.3346 12.3846 15.6923C12.3846 15.05 12.6087 14.5048 13.0567 14.0567C13.5048 13.6087 14.05 13.3846 14.6923 13.3846C15.3346 13.3846 15.8798 13.6087 16.3279 14.0567C16.7759 14.5048 17 15.05 17 15.6923C17 16.3346 16.7759 16.8798 16.3279 17.3279C15.8798 17.776 15.3346 18 14.6923 18ZM5.3077 21.5C4.80257 21.5 4.375 21.325 4.025 20.975C3.675 20.625 3.5 20.1974 3.5 19.6923V6.30772C3.5 5.80258 3.675 5.37502 4.025 5.02502C4.375 4.67502 4.80257 4.50002 5.3077 4.50002H6.69233V3.15384C6.69233 2.93463 6.76573 2.75162 6.91253 2.60482C7.05931 2.45804 7.24232 2.38464 7.46155 2.38464C7.68077 2.38464 7.86378 2.45804 8.01058 2.60482C8.15736 2.75162 8.23075 2.93463 8.23075 3.15384V4.50002H15.8077V3.13462C15.8077 2.9218 15.8794 2.7436 16.023 2.60002C16.1666 2.45644 16.3448 2.38464 16.5576 2.38464C16.7704 2.38464 16.9486 2.45644 17.0922 2.60002C17.2358 2.7436 17.3076 2.9218 17.3076 3.13462V4.50002H18.6923C19.1974 4.50002 19.625 4.67502 19.975 5.02502C20.325 5.37502 20.5 5.80258 20.5 6.30772V19.6923C20.5 20.1974 20.325 20.625 19.975 20.975C19.625 21.325 19.1974 21.5 18.6923 21.5H5.3077ZM5.3077 20H18.6923C18.782 20 18.8557 19.9711 18.9134 19.9134C18.9711 19.8557 19 19.782 19 19.6923V10.3077H4.99997V19.6923C4.99997 19.782 5.02883 19.8557 5.08653 19.9134C5.14423 19.9711 5.21795 20 5.3077 20ZM4.99997 8.80774H19V6.30772C19 6.21797 18.9711 6.14424 18.9134 6.08654C18.8557 6.02884 18.782 5.99999 18.6923 5.99999H5.3077C5.21795 5.99999 5.14423 6.02884 5.08653 6.08654C5.02883 6.14424 4.99997 6.21797 4.99997 6.30772V8.80774Z"
+                            fill="#1DA1F2" />
+                    </svg>
+                    <div class="input-field  dull">  {{ selectedDate.toISOString().slice(0, 10) === todaysdate ? 'Today' : (selectedDate | date:'d MMM yyyy') }}                </div>
+                </div>
+                <svg class="icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10.9792 14.4766C10.7986 14.296 10.7119 14.0702 10.7192 13.7991C10.7258 13.5285 10.8194 13.303 11 13.1224L13.1667 10.9557H4.14583C3.88194 10.9557 3.65611 10.8618 3.46833 10.6741C3.28111 10.4868 3.1875 10.2613 3.1875 9.9974C3.1875 9.73351 3.28111 9.50795 3.46833 9.32073C3.65611 9.13295 3.88194 9.03906 4.14583 9.03906H13.1667L10.9792 6.85156C10.7986 6.67101 10.7083 6.44878 10.7083 6.1849C10.7083 5.92101 10.7986 5.69878 10.9792 5.51823C11.1597 5.32378 11.3819 5.22656 11.6458 5.22656C11.9097 5.22656 12.1389 5.32378 12.3333 5.51823L16.1458 9.33073C16.2292 9.42795 16.2917 9.53212 16.3333 9.64323C16.375 9.75434 16.3958 9.8724 16.3958 9.9974C16.3958 10.1224 16.375 10.2405 16.3333 10.3516C16.2917 10.4627 16.2292 10.5668 16.1458 10.6641L12.3125 14.4974C12.1319 14.678 11.9097 14.7682 11.6458 14.7682C11.3819 14.7682 11.1597 14.671 10.9792 14.4766Z"
+                        fill="#1DA1F2" />
+                </svg>
+
+                <div class="input-container  pointer" (click)="toogleEndDateModal()">
+                    <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M14.6923 18C14.05 18 13.5048 17.776 13.0567 17.3279C12.6087 16.8798 12.3846 16.3346 12.3846 15.6923C12.3846 15.05 12.6087 14.5048 13.0567 14.0567C13.5048 13.6087 14.05 13.3846 14.6923 13.3846C15.3346 13.3846 15.8798 13.6087 16.3279 14.0567C16.7759 14.5048 17 15.05 17 15.6923C17 16.3346 16.7759 16.8798 16.3279 17.3279C15.8798 17.776 15.3346 18 14.6923 18ZM5.3077 21.5C4.80257 21.5 4.375 21.325 4.025 20.975C3.675 20.625 3.5 20.1974 3.5 19.6923V6.30772C3.5 5.80258 3.675 5.37502 4.025 5.02502C4.375 4.67502 4.80257 4.50002 5.3077 4.50002H6.69233V3.15384C6.69233 2.93463 6.76573 2.75162 6.91253 2.60482C7.05931 2.45804 7.24232 2.38464 7.46155 2.38464C7.68077 2.38464 7.86378 2.45804 8.01058 2.60482C8.15736 2.75162 8.23075 2.93463 8.23075 3.15384V4.50002H15.8077V3.13462C15.8077 2.9218 15.8794 2.7436 16.023 2.60002C16.1666 2.45644 16.3448 2.38464 16.5576 2.38464C16.7704 2.38464 16.9486 2.45644 17.0922 2.60002C17.2358 2.7436 17.3076 2.9218 17.3076 3.13462V4.50002H18.6923C19.1974 4.50002 19.625 4.67502 19.975 5.02502C20.325 5.37502 20.5 5.80258 20.5 6.30772V19.6923C20.5 20.1974 20.325 20.625 19.975 20.975C19.625 21.325 19.1974 21.5 18.6923 21.5H5.3077ZM5.3077 20H18.6923C18.782 20 18.8557 19.9711 18.9134 19.9134C18.9711 19.8557 19 19.782 19 19.6923V10.3077H4.99997V19.6923C4.99997 19.782 5.02883 19.8557 5.08653 19.9134C5.14423 19.9711 5.21795 20 5.3077 20ZM4.99997 8.80774H19V6.30772C19 6.21797 18.9711 6.14424 18.9134 6.08654C18.8557 6.02884 18.782 5.99999 18.6923 5.99999H5.3077C5.21795 5.99999 5.14423 6.02884 5.08653 6.08654C5.02883 6.14424 4.99997 6.21797 4.99997 6.30772V8.80774Z"
+                            fill="#1DA1F2" />
+                    </svg>
+                    <div class="input-field  dull">{{ !selectedEndDate ? 'No date' : (selectedEndDate | date:'d MMM yyyy') }} </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="footer">
+        <div class="alignCenter buttons">
+            <button class="cancel pointer" (click)="goBack()">Cancel</button>
+            <button class="save pointer" (click)="saveEmployeeDetails()">Save</button>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay" [class.active]="showModal || showDateModal || showEndDateModal" (click)="onCloseModal()"></div> 
+
+<div class="modal" [class.active]="showModal">
+    <div class="modal-content">
+      <ul>
+        <li class="pointer" (click)="selectRole('Product Designer')">Product Designer</li>
+        <li class="pointer" (click)="selectRole('Flutter Developer')">Flutter Developer</li>
+        <li class="pointer" (click)="selectRole('QA Tester')">QA Tester</li>
+        <li class="pointer" (click)="selectRole('Product Owner')">Product Owner</li>
+      </ul>
+    </div>
+  </div>
+  <div class="modal-date" [class]="{ active: showDateModal, zindex: showDateModal }">
+    <div class="modal-content">
+        <div id="calendar" style="    display: flex;
+    flex-direction: column;
+    align-items: center; height: 85%;">
+            <div id="month-navigation"
+                style="display:flex;flex-direction:column;justify-content:center;width:100%;gap:16px;margin-top:20px;">
+                <div style="display:flex;gap:16px;justify-content:center;align-items:center;">
+                    <div id="today" (click)="jumpToDate()" [class.activeDateOption]="selectedButton == 'today'">Today</div>
+                    <div id="next-monday" (click)="jumpToNextMonday()" [class.activeDateOption]="selectedButton == 'next-monday'">Next Monday</div>
+                </div>
+                <div style="display:flex;gap:16px;justify-content:center;align-items:center;">
+                    <div id="next-tuesday" (click)="jumpToNextTuesday()" [class.activeDateOption]="selectedButton == 'next-tuesday'">Next Tuesday</div>
+                    <div id="after-week" (click)="jumpToAfterWeek()" [class.activeDateOption]="selectedButton == 'after-week'">After 1 Week</div>
+                </div>
+            </div>
+        
+            <div style="display:flex;width:100%;justify-content:center;align-items:center;gap:3px;margin-top:20px;">
+        
+                <svg (click)="prevMonth()" id="prev-month" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M8.8733 13.3589L13.395 18.4065C13.9458 19.0212 14.5759 19.1584 15.2855 18.818C15.9962 18.479 16.3516 17.8726 16.3516 16.999L16.3516 7.00101C16.3516 6.1274 15.9962 5.52104 15.2855 5.18195C14.5759 4.84157 13.9458 4.97876 13.395 5.59352L8.8733 10.6411C8.69939 10.8352 8.56896 11.0455 8.482 11.272C8.39504 11.4985 8.35156 11.7412 8.35156 12C8.35156 12.2588 8.39504 12.5015 8.482 12.728C8.56896 12.9545 8.69939 13.1648 8.8733 13.3589Z"
+                        fill="#949C9E" />
+                </svg>
+                <div id="month-year" style="font-size: 18px;">{{ !selectedDate ? 'No date' : (selectedDate | date:'d MMMM yyyy') }}</div>
+        
+                <svg (click)="nextMonth()" id="next-month" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M16.1267 13.3589L11.605 18.4065C11.0542 19.0212 10.4241 19.1584 9.71452 18.818C9.0038 18.479 8.64844 17.8726 8.64844 16.999L8.64844 7.00101C8.64844 6.1274 9.0038 5.52104 9.71452 5.18195C10.4241 4.84157 11.0542 4.97876 11.605 5.59352L16.1267 10.6411C16.3006 10.8352 16.431 11.0455 16.518 11.272C16.605 11.4985 16.6484 11.7412 16.6484 12C16.6484 12.2588 16.605 12.5015 16.518 12.728C16.431 12.9545 16.3006 13.1648 16.1267 13.3589Z"
+                        fill="#949C9E" />
+                </svg>
+            </div>
+        
+        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <tr *ngFor="let week of weeks; let i = index" class="row-height" style="height:fit-content;">
+                        <td *ngFor="let day of week; let j = index" >
+                          <span style="cursor:pointer" (click)="onDateClick(day)" [ngClass]="{'selected': isSelected(day), 'today': isToday(day)}">{{ day?.getDate() }}</span>
+                        </td>
+                      </tr>
+                  
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="display:flex;width:100%;justify-content:start;align-items:center;margin-top: 20px;">
+        
+            <div style="display:flex;width:fit-content;justify-content:start;align-items:center;margin: 0 16px 16px 0;">
+        
+                <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14.6923 18C14.05 18 13.5048 17.776 13.0567 17.3279C12.6087 16.8798 12.3846 16.3346 12.3846 15.6923C12.3846 15.05 12.6087 14.5048 13.0567 14.0567C13.5048 13.6087 14.05 13.3846 14.6923 13.3846C15.3346 13.3846 15.8798 13.6087 16.3279 14.0567C16.7759 14.5048 17 15.05 17 15.6923C17 16.3346 16.7759 16.8798 16.3279 17.3279C15.8798 17.776 15.3346 18 14.6923 18ZM5.3077 21.5C4.80257 21.5 4.375 21.325 4.025 20.975C3.675 20.625 3.5 20.1974 3.5 19.6923V6.30772C3.5 5.80258 3.675 5.37502 4.025 5.02502C4.375 4.67502 4.80257 4.50002 5.3077 4.50002H6.69233V3.15384C6.69233 2.93463 6.76573 2.75162 6.91253 2.60482C7.05931 2.45804 7.24232 2.38464 7.46155 2.38464C7.68077 2.38464 7.86378 2.45804 8.01058 2.60482C8.15736 2.75162 8.23075 2.93463 8.23075 3.15384V4.50002H15.8077V3.13462C15.8077 2.9218 15.8794 2.7436 16.023 2.60002C16.1666 2.45644 16.3448 2.38464 16.5576 2.38464C16.7704 2.38464 16.9486 2.45644 17.0922 2.60002C17.2358 2.7436 17.3076 2.9218 17.3076 3.13462V4.50002H18.6923C19.1974 4.50002 19.625 4.67502 19.975 5.02502C20.325 5.37502 20.5 5.80258 20.5 6.30772V19.6923C20.5 20.1974 20.325 20.625 19.975 20.975C19.625 21.325 19.1974 21.5 18.6923 21.5H5.3077ZM5.3077 20H18.6923C18.782 20 18.8557 19.9711 18.9134 19.9134C18.9711 19.8557 19 19.782 19 19.6923V10.3077H4.99997V19.6923C4.99997 19.782 5.02883 19.8557 5.08653 19.9134C5.14423 19.9711 5.21795 20 5.3077 20ZM4.99997 8.80774H19V6.30772C19 6.21797 18.9711 6.14424 18.9134 6.08654C18.8557 6.02884 18.782 5.99999 18.6923 5.99999H5.3077C5.21795 5.99999 5.14423 6.02884 5.08653 6.08654C5.02883 6.14424 4.99997 6.21797 4.99997 6.30772V8.80774Z"
+                        fill="#1DA1F2" />
+                </svg>
+                <div id="selected-date">{{ !selectedDate ? 'No date' : (selectedDate | date:'d MMM yyyy') }}</div>
+            </div>
+            <div style="display: flex;
+            gap: 16px;
+            flex-grow: 1;
+            float: right;
+            justify-content: flex-end;
+            margin: 0 16px 16px 16px;
+            align-items: center;
+            float: right;">
+                <div class="cancel" (click)="onCloseModal()">Cancel</div>
+                <div class="save" (click)="saveDate()">Save</div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="modal-end-date" [class]="{ active: showEndDateModal, zindex: showEndDateModal }">
+    <div class="modal-content">
+        <div id="calendar" style="    display: flex;
+    flex-direction: column;
+    align-items: center; height: 85%;">
+            <div id="month-navigation"
+                style="display:flex;flex-direction:column;justify-content:center;width:100%;gap:16px;margin-top:20px;">
+                <div style="display:flex;gap:16px;justify-content:center;align-items:center;">
+                    <div id="next-monday" (click)="jumpToNoEndDate()" [class.activeDateOption]="selectedEndButton == 'no-date'">No date</div>
+                    <div id="today" (click)="jumpToEndDate()" [class.activeDateOption]="selectedEndButton == 'today'">Today</div>
+                </div>
+            </div>
+            <div style="display:flex;width:100%;justify-content:center;align-items:center;gap:3px;margin-top:20px;">
+        
+                <svg (click)="prevMonthEnd()" id="prev-month" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M8.8733 13.3589L13.395 18.4065C13.9458 19.0212 14.5759 19.1584 15.2855 18.818C15.9962 18.479 16.3516 17.8726 16.3516 16.999L16.3516 7.00101C16.3516 6.1274 15.9962 5.52104 15.2855 5.18195C14.5759 4.84157 13.9458 4.97876 13.395 5.59352L8.8733 10.6411C8.69939 10.8352 8.56896 11.0455 8.482 11.272C8.39504 11.4985 8.35156 11.7412 8.35156 12C8.35156 12.2588 8.39504 12.5015 8.482 12.728C8.56896 12.9545 8.69939 13.1648 8.8733 13.3589Z"
+                        fill="#949C9E" />
+                </svg>
+                <div id="month-end-year" style="font-size: 18px;">{{ months[currentEndMonth] + ' ' + currentEndYear  }}</div>
+        
+                <svg (click)="nextMonthEnd()" id="next-month" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M16.1267 13.3589L11.605 18.4065C11.0542 19.0212 10.4241 19.1584 9.71452 18.818C9.0038 18.479 8.64844 17.8726 8.64844 16.999L8.64844 7.00101C8.64844 6.1274 9.0038 5.52104 9.71452 5.18195C10.4241 4.84157 11.0542 4.97876 11.605 5.59352L16.1267 10.6411C16.3006 10.8352 16.431 11.0455 16.518 11.272C16.605 11.4985 16.6484 11.7412 16.6484 12C16.6484 12.2588 16.605 12.5015 16.518 12.728C16.431 12.9545 16.3006 13.1648 16.1267 13.3589Z"
+                        fill="#949C9E" />
+                </svg>
+            </div>
+        
+        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-end-body">
+                    <tr *ngFor="let week of endWeeks; let i = index" class="row-height" style="height:40px;">
+                        <td *ngFor="let day of week; let j = index">
+                          <span style="cursor:pointer" (click)="onEndDateClick(day)" [ngClass]="{'today': isToday(day), 'selected': isEndSelected(day), 'disabled': isDisabled(day)}">{{ day?.getDate() }}</span> 
+                        </td>
+                      </tr>                  
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="display:flex;width:100%;justify-content:start;align-items:center;margin-top: 20px;">
+        
+            <div style="display:flex;width:fit-content;justify-content:start;align-items:center;margin: 0 16px 16px 0;">
+        
+                <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14.6923 18C14.05 18 13.5048 17.776 13.0567 17.3279C12.6087 16.8798 12.3846 16.3346 12.3846 15.6923C12.3846 15.05 12.6087 14.5048 13.0567 14.0567C13.5048 13.6087 14.05 13.3846 14.6923 13.3846C15.3346 13.3846 15.8798 13.6087 16.3279 14.0567C16.7759 14.5048 17 15.05 17 15.6923C17 16.3346 16.7759 16.8798 16.3279 17.3279C15.8798 17.776 15.3346 18 14.6923 18ZM5.3077 21.5C4.80257 21.5 4.375 21.325 4.025 20.975C3.675 20.625 3.5 20.1974 3.5 19.6923V6.30772C3.5 5.80258 3.675 5.37502 4.025 5.02502C4.375 4.67502 4.80257 4.50002 5.3077 4.50002H6.69233V3.15384C6.69233 2.93463 6.76573 2.75162 6.91253 2.60482C7.05931 2.45804 7.24232 2.38464 7.46155 2.38464C7.68077 2.38464 7.86378 2.45804 8.01058 2.60482C8.15736 2.75162 8.23075 2.93463 8.23075 3.15384V4.50002H15.8077V3.13462C15.8077 2.9218 15.8794 2.7436 16.023 2.60002C16.1666 2.45644 16.3448 2.38464 16.5576 2.38464C16.7704 2.38464 16.9486 2.45644 17.0922 2.60002C17.2358 2.7436 17.3076 2.9218 17.3076 3.13462V4.50002H18.6923C19.1974 4.50002 19.625 4.67502 19.975 5.02502C20.325 5.37502 20.5 5.80258 20.5 6.30772V19.6923C20.5 20.1974 20.325 20.625 19.975 20.975C19.625 21.325 19.1974 21.5 18.6923 21.5H5.3077ZM5.3077 20H18.6923C18.782 20 18.8557 19.9711 18.9134 19.9134C18.9711 19.8557 19 19.782 19 19.6923V10.3077H4.99997V19.6923C4.99997 19.782 5.02883 19.8557 5.08653 19.9134C5.14423 19.9711 5.21795 20 5.3077 20ZM4.99997 8.80774H19V6.30772C19 6.21797 18.9711 6.14424 18.9134 6.08654C18.8557 6.02884 18.782 5.99999 18.6923 5.99999H5.3077C5.21795 5.99999 5.14423 6.02884 5.08653 6.08654C5.02883 6.14424 4.99997 6.21797 4.99997 6.30772V8.80774Z"
+                        fill="#1DA1F2" />
+                </svg>
+                <div id="selected-end-date">{{ !selectedEndDate ? 'No date' : (selectedEndDate | date:'d MMM yyyy') }}</div>
+            </div>
+            <div style="display: flex;gap: 16px;flex-grow: 1;float: right;justify-content: flex-end;margin: 0 16px 16px 16px;
+            align-items: center;
+            float: right;">
+                <div class="cancel" (click)="onCloseModal()">Cancel</div>
+                <div class="save" (click)="saveEndDate()">Save</div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="alert alert-success" [class.display-alert]="showAlert">
+    <div style="
+    padding-left: 10px;">
+      {{ alertMessage }}
+    </div>
+  </div>
+  

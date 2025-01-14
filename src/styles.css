@@ -1,0 +1,213 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: sans-serif;
+}
+.header p {
+    height: 55px;
+    line-height: 55px;
+    padding-left: 15px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+  
+  .header {
+    width: 100%;
+    display: flex;
+    background: #1DA1F2;
+    align-items: center;
+  }
+  .svg-container {
+    height: 42px;
+    width: 42px;
+    margin-left: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .svg-container svg {
+    color: #ffffff;
+  }
+  .svg-container:hover {
+    background: #97c1ea99;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  .alert {
+    background: #323238;
+    width: 428px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+      position: fixed;
+      color: white;
+      top: -20%;
+      right: 10px;
+      z-index: 9999;
+      font-size: 15px;
+      height: 40px;
+  }
+
+  .today {
+    border: 1px solid #1DA1F2;
+    color: #1DA1F2;
+    border-radius: 50%;
+    padding: 7px;
+  }
+
+  .selected  {
+    background: #1DA1F2;
+    padding: 7px;
+    color: #fff;
+    border-radius: 50%;
+  }
+
+  .display-alert {
+    top: 5%;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1; /* Ensure overlay is behind other content */
+    display: none; 
+  }
+
+  .modal-overlay.active {
+    display: block; 
+  }
+
+  
+.activeDateOption {
+  background: #1DA1F2 !important;
+  color: #ffffff !important;
+}
+
+.disabled {
+  opacity: 0.5; /* Or any desired styling for disabled dates */
+  cursor: not-allowed; 
+}
+
+
+  @media screen and (min-width: 1001px) {
+    .modal {
+      right: -100%; 
+      left:auto !important;
+      top: 0;
+      height: 100% !important;
+      width: 40% !important;
+      border-top-right-radius: 0 !important;
+      border-top-left-radius: 8px !important;
+      border-bottom-left-radius: 8px;
+    }
+    
+    .modal.active {
+      right: 0% !important; 
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width:1000px) {
+    .alert {
+      bottom: -10%;
+      top: unset;
+      right: unset;
+      width: 100%;
+    }
+    .display-alert {
+      bottom: 0;
+      top: unset;
+    }
+    .modal {
+      right: -100%; 
+      left:auto !important;
+      top: 0;
+      height: 100% !important;
+      width: 80% !important;
+      border-top-right-radius: 0 !important;
+      border-bottom-left-radius: 16px;
+    }
+    
+    .modal.active {
+      right: 0% !important; 
+    }
+  }
+
+  @media screen and (max-width: 768px) { 
+    .alert {
+      bottom: -10%;
+      top: unset;
+      right: unset;
+      width: 100%;
+    }
+    .display-alert {
+      bottom: 0;
+      top: unset;
+    }
+    /* Styles for tablets and smaller screens */
+    .container {
+      /* Adjust container styles for smaller screens */
+    }
+    .header {
+      /* Adjust header styles for smaller screens */
+    }
+    .alignCenter {
+      /* Adjust alignment for smaller screens */
+    }
+    .input-container {
+      /* Adjust input container styles for smaller screens */
+    }
+    #employeeForm {
+      min-width: 90% !important;
+      max-width: 700px !important;
+      margin: 5% !important;
+      margin-top:7% !important;
+    }
+    /* ... other styles for smaller screens ... */
+  }
+  
+  @media screen and (max-width: 480px) { 
+    .alert {
+      bottom: -10%;
+      top: unset;
+      right: unset;
+      width: 100%;
+    }
+    .display-alert {
+      bottom: 0;
+      top: unset;
+    }
+    /* Styles for mobile phones */
+    .container {
+      /* Adjust container styles for mobile phones */
+    }
+    .header {
+      /* Adjust header styles for mobile phones */
+    }
+    .alignCenter {
+      /* Adjust alignment for mobile phones */
+    }
+    .input-container {
+      /* Adjust input container styles for mobile phones */
+    }
+    
+    #employeeForm {
+      min-width: 95% !important;
+      max-width: 450px !important;
+      margin: 2.5% !important;
+      margin-top:5% !important;
+    }
+    /* ... other styles for mobile phones ... */
+  }
