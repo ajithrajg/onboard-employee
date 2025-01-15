@@ -101,27 +101,27 @@ html, body {
   cursor: not-allowed; 
 }
 @media screen and (max-height: 530px) {
-  .modal-date {
+  .modal-date, .modal-end-date {
     height: 90% !important;
     top: 5% !important;
   }
 }
 
 @media screen and (min-height: 530px) {
-  .modal-date {
+  .modal-date, .modal-end-date {
     height: fit-content !important;
     top: 0.5% !important;
   }
 }
 @media screen and (min-height: 545px) {
-  .modal-date {
+  .modal-date, .modal-end-date {
     height: fit-content !important;
     top: 2.5% !important;
   }
 }
 
 @media screen and (min-height: 630px) {
-  .modal-date {
+  .modal-date, .modal-end-date {
     top: 14% !important;
   }
 }
