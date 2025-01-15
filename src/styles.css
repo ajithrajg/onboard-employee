@@ -120,6 +120,9 @@ html, body {
   }
 
   @media screen and (min-width: 768px) and (max-width:1000px) {
+    .modal {
+      height: 230px !important;
+    }
     
     .modal-date, .modal-end-date {
       width: 50% !important;
@@ -151,7 +154,9 @@ html, body {
   }
 
   @media screen and (max-width: 768px) { 
-    
+    .modal {
+      height: 230px !important;
+    }
     .modal-date, .modal-end-date {
       width: 96% !important;
       margin: 0 2% !important;
@@ -190,7 +195,9 @@ html, body {
   }
   
   @media screen and (max-width: 480px) { 
-    
+    .modal {
+      height: 230px !important;
+    }
     .modal-date, .modal-end-date {
       width: 98% !important;
       transform: translateX(0%) !important;
