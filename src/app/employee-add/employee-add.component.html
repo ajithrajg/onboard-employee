@@ -140,7 +140,10 @@
                 <tbody id="calendar-body">
                     <tr *ngFor="let week of weeks; let i = index" class="row-height" style="height:fit-content;">
                         <td *ngFor="let day of week; let j = index" >
-                          <span style="cursor:pointer;padding: 7px;" (click)="onDateClick(day)" [ngClass]="{'selected': isSelected(day), 'today': isToday(day)}">{{ day?.getDate() }}</span>
+                          <span style="    cursor: pointer;
+                          padding: 7px;
+                          width: 18px;
+                          display: block;" (click)="onDateClick(day)" [ngClass]="{'selected': isSelected(day), 'today': isToday(day)}">{{ day?.getDate() }}</span>
                         </td>
                       </tr>
                   
@@ -219,7 +222,10 @@
                 <tbody id="calendar-end-body">
                     <tr *ngFor="let week of endWeeks; let i = index" class="row-height" style="height:40px;">
                         <td *ngFor="let day of week; let j = index">
-                          <span style="cursor:pointer;padding: 7px;" (click)="onEndDateClick(day)" [ngClass]="{'today': isToday(day), 'selected': isEndSelected(day), 'disabled': isDisabled(day)}">{{ day?.getDate() }}</span> 
+                            <span style="    cursor: pointer;
+                            padding: 7px;
+                            width: 18px;
+                            display: block;" (click)="onEndDateClick(day)" [ngClass]="{'today': isToday(day), 'selected': isEndSelected(day), 'disabled': isDisabled(day)}">{{ day?.getDate() }}</span> 
                         </td>
                       </tr>                  
                 </tbody>

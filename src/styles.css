@@ -100,6 +100,31 @@ html, body {
   opacity: 0.5; /* Or any desired styling for disabled dates */
   cursor: not-allowed; 
 }
+@media screen and (max-height: 530px) {
+  .modal-date {
+    height: 90% !important;
+    top: 5% !important;
+  }
+}
+
+@media screen and (min-height: 530px) {
+  .modal-date {
+    height: fit-content !important;
+    top: 0.5% !important;
+  }
+}
+@media screen and (min-height: 545px) {
+  .modal-date {
+    height: fit-content !important;
+    top: 2.5% !important;
+  }
+}
+
+@media screen and (min-height: 630px) {
+  .modal-date {
+    top: 14% !important;
+  }
+}
 
 
   @media screen and (min-width: 1001px) {
@@ -202,13 +227,6 @@ html, body {
       width: 98% !important;
       transform: translateX(0%) !important;
       margin: 0 1% !important;
-    }
-
-    .modal-date {
-      height: 59% !important;
-    }
-    .modal-end-date {
-      height: 54% !important;
     }
     .alert {
       bottom: -10%;

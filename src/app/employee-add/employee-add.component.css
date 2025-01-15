@@ -81,6 +81,14 @@
   color: #ffffff;
 }
 
+.padding-small {
+  padding: 7px 11px;
+}
+.padding-normal {
+  padding: 7px;
+}
+
+
 
 .modal {
   position: fixed;
@@ -100,7 +108,7 @@
 .modal-date {
   position: fixed;
   top: 20%;
-  height: 62%;
+  height: 65%;
   width: 35%;
   margin: 0 auto;
   background:#fff;
@@ -203,7 +211,6 @@ th {
 
 td span {
   cursor: pointer;
-  margin: 5px;
 }
 
 .row-height {
