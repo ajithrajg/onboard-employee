@@ -278,7 +278,6 @@ export class EmployeeAddComponent  {
   }
 
   ngOnInit() {
-    this.generateCalendar();
     //this.generateEndCalendar();
     console.log(this.empService.getSelectedEmployee());
     this.route.queryParams.subscribe(params => {
@@ -296,6 +295,9 @@ export class EmployeeAddComponent  {
               this.roleName = this.employee.role;
               this.confirmSelectedDate = this.employee.startDate;
               this.confirmSelectedEndDate = this.employee.endDate != 'no-date' ? this.employee.endDate : null;
+              this.selectedDate = this.confirmSelectedDate;
+              this.selectedEndDate = this.confirmSelectedEndDate;
+              this.generateCalendar();
             } else {
               // Handle case where employee not found (e.g., display an error message)
               console.log('Employee Not Found');
@@ -307,6 +309,7 @@ export class EmployeeAddComponent  {
           }
         );
       }
+      else this.generateCalendar();
     });
     
   }
