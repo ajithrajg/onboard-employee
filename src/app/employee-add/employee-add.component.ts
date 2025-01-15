@@ -43,7 +43,7 @@ export class EmployeeAddComponent  {
   constructor(private employeeService: EmployeeService, private fb: FormBuilder,private router: Router
     ,private empService: EmployeeService, private route: ActivatedRoute) {
     this.employeeForm = this.fb.group({
-      employeeName: ['', Validators.required] 
+      employeeName: ['', Validators.required]
     });
   }
 
@@ -63,6 +63,12 @@ export class EmployeeAddComponent  {
       this.showModal = false; 
       this.showDateModal = false;
       this.showEndDateModal = false;
+      if(this.selectedDate != this.confirmSelectedDate) {
+        this.selectedDate = this.confirmSelectedDate;
+      }
+      if(this.selectedEndDate != this.confirmSelectedEndDate) {
+        this.selectedEndDate = this.confirmSelectedEndDate
+      }
   }
 
   selectRole(role: string) {
@@ -71,12 +77,15 @@ export class EmployeeAddComponent  {
   }
 
   toggleDateModal() {
+    this.generateCalendar();
     this.showDateModal = !this.showDateModal;
+    this.confirmSelectedDate = this.selectedDate;
   }
 
   toogleEndDateModal() {
-    this.showEndDateModal = !this.showEndDateModal;
     this.generateEndCalendar();
+    this.confirmSelectedEndDate = this.selectedEndDate;
+    this.showEndDateModal = !this.showEndDateModal;
   }
 
   saveDate() {
@@ -143,7 +152,7 @@ export class EmployeeAddComponent  {
   }
 
   isEndSelected(date: Date | null): boolean {
-    if (!date || !this.selectedEndDate) {
+    if ((!date || !this.selectedEndDate) || (this.selectedEndDate && this.selectedEndDate == 'no-date')) {
       return false;
     }
     return date.toDateString() === this.selectedEndDate.toDateString();
@@ -278,8 +287,6 @@ export class EmployeeAddComponent  {
   }
 
   ngOnInit() {
-    //this.generateEndCalendar();
-    console.log(this.empService.getSelectedEmployee());
     this.route.queryParams.subscribe(params => {
       this.empId = params['id'] ? params['id'] : null; 
       // Use this.employeeId to fetch employee data from your service 
@@ -293,11 +300,17 @@ export class EmployeeAddComponent  {
               this.employee = employee;
               this.employeeForm.get('employeeName')?.setValue(this.employee.name);
               this.roleName = this.employee.role;
-              this.confirmSelectedDate = this.employee.startDate;
-              this.confirmSelectedEndDate = this.employee.endDate != 'no-date' ? this.employee.endDate : null;
-              this.selectedDate = this.confirmSelectedDate;
-              this.selectedEndDate = this.confirmSelectedEndDate;
+              this.selectedDate = this.employee.startDate;
+              this.selectedEndDate = this.employee.endDate;
+              this.confirmSelectedDate = this.selectedDate;
+              this.confirmSelectedEndDate = this.selectedEndDate;
+              this.currentMonth = this.selectedDate.getMonth();
+              this.currentYear = this.selectedDate.getFullYear();
+              const date = new Date();
+              this.currentEndMonth = this.selectedEndDate == 'no-date' ? date.getMonth() : this.selectedEndDate.getMonth();
+              this.currentEndYear = this.selectedEndDate == 'no-date' ? date.getFullYear() : this.selectedEndDate.getFullYear();
               this.generateCalendar();
+              this.generateEndCalendar();
             } else {
               // Handle case where employee not found (e.g., display an error message)
               console.log('Employee Not Found');
@@ -309,7 +322,6 @@ export class EmployeeAddComponent  {
           }
         );
       }
-      else this.generateCalendar();
     });
     
   }
@@ -331,8 +343,8 @@ export class EmployeeAddComponent  {
       const employee = { 
         name: this.employeeName, 
         role: this.roleName, 
-        startDate: this.confirmSelectedDate, 
-        endDate: this.confirmSelectedEndDate || 'no-date',
+        startDate: this.selectedDate, 
+        endDate: this.selectedEndDate || 'no-date',
         id: this.empId || generatedId
       };
       
