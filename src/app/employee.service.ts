@@ -45,13 +45,28 @@ export class EmployeeService {
         mergeMap(db => {
           const transaction = db.transaction('employees', 'readwrite');
           const objectStore = transaction.objectStore('employees');
-          return from(new Promise<boolean>((resolve, reject) => {
-            const request = objectStore.put(employee);
-            // @ts-ignore
-            request.onsuccess = () => resolve(true);
-            // @ts-ignore
-            request.onerror = (event) => reject(event.target.error);
-          }));
+          
+          // Assuming 'employee' has an ID or key that is needed for update (for example: 'employee.id')
+          if (!employee.id) {
+            return of(false); // Return false if the ID is missing
+          }
+    
+          // Perform the update (put will update if the key exists, otherwise it inserts)
+          const request = objectStore.put(employee);
+    
+          return new Observable<boolean>((observer) => {
+            request.onsuccess = () => {
+              observer.next(true);  // Successfully updated, emit true
+              observer.complete();
+            };
+            request.onerror = (event) => {
+              //@ts-ignore
+              console.error('Error updating employee:', event.target.error);
+              observer.next(false);  // Error occurred, emit false
+              observer.complete();
+            };
+          });
+    
         }),
         map(() => true), // Emit true on successful update
         catchError(error => {
@@ -84,7 +99,7 @@ export class EmployeeService {
       );
   }
 
-  getEmployeeById(id: number): Observable<any> {
+  getEmployeeById(id: any): Observable<any> {
     return from(this.connectToIndexedDB('employeeDB'))
       .pipe(
         mergeMap(db => {

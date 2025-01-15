@@ -282,7 +282,7 @@ export class EmployeeAddComponent  {
     //this.generateEndCalendar();
     console.log(this.empService.getSelectedEmployee());
     this.route.queryParams.subscribe(params => {
-      this.empId = params['id'] ? Number(params['id']) : null; 
+      this.empId = params['id'] ? params['id'] : null; 
       // Use this.employeeId to fetch employee data from your service 
       if(this.empId) {
         this.empId = this.empService.getSelectedEmployee();
@@ -312,12 +312,25 @@ export class EmployeeAddComponent  {
   }
 
   saveEmployeeDetails() {
+    const firstChar = this.employeeName.charAt(0); 
+    const now = new Date(); 
+    const year = now.getFullYear().toString().substr(-2); 
+    const month = (now.getMonth() + 1).toString().padStart(2, '0'); 
+    const day = now.getDate().toString().padStart(2, '0'); 
+    const hours = now.getHours().toString().padStart(2, '0'); 
+    const minutes = now.getMinutes().toString().padStart(2, '0'); 
+    const seconds = now.getSeconds().toString().padStart(2, '0'); 
+    const milliseconds = now.getMilliseconds().toString().padStart(3, '0'); 
+
+    const generatedId = firstChar + year + month + day + hours + minutes + seconds + milliseconds.substr(0, 3); 
+
       // Get employee data from your form (e.g., employeeName, role, startDate, endDate)
       const employee = { 
         name: this.employeeName, 
         role: this.roleName, 
         startDate: this.confirmSelectedDate, 
-        endDate: this.confirmSelectedEndDate || 'no-date' 
+        endDate: this.confirmSelectedEndDate || 'no-date',
+        id: this.empId || generatedId
       };
       
     if(this.empId) {

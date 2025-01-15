@@ -75,7 +75,7 @@
     <div class="footer">
         <div class="alignCenter buttons">
             <button class="cancel pointer" (click)="goBack()">Cancel</button>
-            <button class="save pointer" (click)="saveEmployeeDetails()">Save</button>
+            <button class="save pointer" (click)="saveEmployeeDetails()">{{empId ? 'Update' : 'Save'}}</button>
         </div>
     </div>
 </div>
